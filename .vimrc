@@ -117,6 +117,8 @@ set backspace=indent,eol,start
 " Allow buffer switching without saving
 set hidden 
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+set shortmess+=A
+
 
 "===== TABS/SPLITS =====
 " Create a new tab
