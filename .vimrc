@@ -2,28 +2,38 @@ set number
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'hzchirs/vim-material'
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'Yggdroot/indentLine'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Wutzara/vim-materialtheme'
-Plugin 'tyrannicaltoucan/vim-quantum'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'Valloric/MatchTagAlways'
-Plugin 'jwalton512/vim-blade'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-call vundle#end()            " required
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'hzchirs/vim-material'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'Yggdroot/indentLine'
+Plug 'ryanoasis/vim-devicons'
+Plug 'leafgarland/typescript-vim'
+Plug 'Wutzara/vim-materialtheme'
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'scrooloose/nerdcommenter'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Valloric/MatchTagAlways'
+Plug 'jwalton512/vim-blade'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/emmet-vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-eunuch'
+Plug 'w0rp/ale'
+Plug 'maksimr/vim-jsbeautify'
+call plug#end()            " required
 
 " Source the vimrc file after saving it
 if has("autocmd")
@@ -44,7 +54,6 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent
 
 let g:indentLine_enabled = 1
-
 let g:deoplete#enable_at_startup = 1
 
 :map <C-1> 1gt
