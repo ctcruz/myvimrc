@@ -33,6 +33,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch'
 Plug 'w0rp/ale'
 Plug 'maksimr/vim-jsbeautify'
+Plug 'Shougo/neosnippet.vim'
+Plug 'honza/vim-snippets'
 call plug#end()            " required
 
 " Source the vimrc file after saving it
@@ -42,6 +44,7 @@ endif
 
 "===== Indentation =====
 filetype plugin indent on    " required
+let g:editorconfig_Beautifier="~/.editorconfig"
 
 let g:php_cs_fixer_rules = "@PSR2"
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
@@ -225,9 +228,8 @@ set showcmd
 " Set a dir to send your swp files
 set dir=~/tmp
 
-" Copy and past clipboard
+" Copy clipboard
 noremap <C-c> "+y
-noremap <C-v> "+p
 
 noremap <C-e> <leader>c<space>
 
@@ -243,3 +245,26 @@ let g:quantum_italics=1
 "set background=dark
 
 set guifont=DroidSansMono\ Nerd\ Font\ 11:h10
+
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
