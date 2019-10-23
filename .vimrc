@@ -2,7 +2,8 @@ set number
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
-call plug#begin('~/.vim/plugged')
+
+call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -16,26 +17,30 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'scrooloose/nerdcommenter'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/MatchTagAlways'
 Plug 'jwalton512/vim-blade'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim' " autocompletion
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'Shougo/neosnippet.vim'
 Plug 'honza/vim-snippets'
-call plug#end()            " required
+Plug 'posva/vim-vue'
+call plug#end()
+
+let g:loaded_clipboard_provider = 1
 
 " Source the vimrc file after saving it
 if has("autocmd")
@@ -56,6 +61,10 @@ nnoremap <F12> :call PhpCsFixerFixFile()<CR>
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent
 
+let g:python_host_prog = '/usr/local/bin/python2.7'
+let g:python3_host_prog = '/usr/bin/python3'
+
+"set runtimepath+=~/.config/nvim/plugged/deoplete.nvim
 let g:indentLine_enabled = 1
 let g:deoplete#enable_at_startup = 1
 
@@ -77,6 +86,8 @@ let g:deoplete#enable_at_startup = 1
 :imap <C-8> <C-O>8gt
 :map <C-9> 9gt
 :imap <C-9> <C-O>9gt
+:vmap <C-c> "+y
+set guioptions+=a
 
 imap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
 nmap ,c <C-o>:call NERDComment(0,"toggle")<C-m>
@@ -258,8 +269,9 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " \ pumvisible() ? "\<C-n>" :
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" Enable when deoplet working
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -267,4 +279,5 @@ if has('conceal')
 endif
 
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
+let g:vue_pre_processors = ['less', 'scss']
